@@ -13,6 +13,7 @@ class App extends React.Component {
     };
     this.newGame = this.newGame.bind(this);
     this.reset = this.reset.bind(this);
+    this.showSolve = this.showSolve.bind(this);
   }
 
   newGame() {
@@ -27,11 +28,18 @@ class App extends React.Component {
     this.setState({ board: this.state.initialBoard });
   }
 
+  showSolve() {
+    const solve = sudoku.solve(this.state.initialBoard);
+    if(solve) {
+        this.setState({board: solve});
+    }
+}
+
   handleChange(index, value) {
     console.log(index, value);
     const newBoard =
       this.state.board.slice(0, index) +
-      ((value === '') | (value < 1) | (value > 9) ? '.' : value) +
+      ((value === '') | (value < 1) | (value > 9) ? '' : value) +
       this.state.board.slice(index + 1);
     console.log(this.state.board, newBoard);
     this.setState({ board: newBoard });
@@ -49,7 +57,7 @@ class App extends React.Component {
         <div className={style.buttons}>
           <button>Check</button>
           <button onClick={this.newGame}>New Game</button>
-          <button>Solve</button>
+          <button onClick={this.showSolve}>Solve</button>
           <button onClick={this.reset}>Restart</button>
         </div>
       </div>

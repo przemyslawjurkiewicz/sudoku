@@ -8,12 +8,17 @@ const Board = props => {
   const splitInitialBoard = props.initialBoard.split('');
 
   const value = splitBoard.map((number, index) => {
-    console.log (splitBoard[index].value)
+    //console.log (props.board[index])
     return (
       <Tile
         key={index}
-        value={number}
-        className={number === splitInitialBoard[index].value ? style.tileinitial : style.tile}
+        value={number === '.' ? '' : number}
+        className={
+          number === splitInitialBoard[index] ? style.tileinitial : style.tile
+        }
+        disabled={
+          number == '.' ? false : true
+        }
         handleChange={event => props.handleChange(index, event.target.value)}
       />
     );
