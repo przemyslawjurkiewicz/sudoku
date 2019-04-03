@@ -11,9 +11,6 @@ class App extends React.Component {
       initialBoard: '',
       board: ''
     };
-    this.newGame = this.newGame.bind(this);
-    this.reset = this.reset.bind(this);
-    this.showSolve = this.showSolve.bind(this);
   }
 
   newGame() {
@@ -30,10 +27,21 @@ class App extends React.Component {
 
   showSolve() {
     const solve = sudoku.solve(this.state.initialBoard);
-    if(solve) {
-        this.setState({board: solve});
+    if (solve) {
+      this.setState({ board: solve });
     }
-}
+  }
+
+  checkSolve() {
+    const check = sudoku.solve(this.state.board);
+    if (!check) {
+      alert('Nieprawidłowe rozwiązanie');
+    } else if (this.state.board === this.state.initialBoard) {
+      alert('Rozwiązanie jest takie samo jak początkowe');
+    } else {
+      alert('Gratulacje, udało Ci się :)');
+    }
+  }
 
   handleChange(index, value) {
     console.log(index, value);
@@ -55,10 +63,10 @@ class App extends React.Component {
           handleChange={this.handleChange.bind(this)}
         />
         <div className={style.buttons}>
-          <button>Check</button>
-          <button onClick={this.newGame}>New Game</button>
-          <button onClick={this.showSolve}>Solve</button>
-          <button onClick={this.reset}>Restart</button>
+          <button onClick={() => this.checkSolve()}>Check</button>
+          <button onClick={() => this.newGame()}>New Game</button>
+          <button onClick={() => this.showSolve()}>Solve</button>
+          <button onClick={() => this.reset()}>Restart</button>
         </div>
       </div>
     );

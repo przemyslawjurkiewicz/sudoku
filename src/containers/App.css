@@ -11,8 +11,8 @@
 }
 
 .board {
-  width: 50%;
-  height: 80%;
+  max-width: 800px;
+  max-height: 800px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -21,8 +21,7 @@
 }
 
 .tile {
-  -moz-appearance: textfield;
-  flex-basis: 11%;
+  width: 11%;
   margin: 0;
   text-align: center;
   font-size: 1rem;
@@ -36,9 +35,7 @@
 }
 
 .tileinitial {
-    -moz-appearance: teixtfeld;
-    
-    flex-basis: 11%;
+    width: 11%;
     margin: 0;
     text-align: center;
     font-size: 1rem;
@@ -56,6 +53,10 @@ input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
 }
 
 input:nth-child(9n + 1) {
