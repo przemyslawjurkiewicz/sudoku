@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './App.css';
+import Result from '../components/Result';
 import Board from '../components/Board';
 import sudoku from 'sudoku-umd';
 import { hot } from 'react-hot-loader';
@@ -9,7 +10,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       initialBoard: '',
-      board: ''
+      board: '',
+      result: 'Zaczynamy',
+      resultClassName: style.resultinitial
     };
   }
 
@@ -44,12 +47,32 @@ class App extends React.Component {
   }
 
   handleChange(index, value) {
-    console.log(index, value);
     const newBoard =
       this.state.board.slice(0, index) +
-      ((value === '') | (value < 1) | (value > 9) ? '' : value) +
+      ((value === '') | (value < 1) | (value > 9) ? '.' : value) +
       this.state.board.slice(index + 1);
-    console.log(this.state.board, newBoard);
+    const checkResult = sudoku.solve(newBoard);
+    if (!checkResult) {
+      this.setState({
+        result: 'Coś jest nie tak',
+        resultClassName: style.resultwrong
+      });
+    } else if (newBoard === this.state.initialBoard) {
+      this.setState({
+        result: 'Nic nie zmieniłeś',
+        resultClassName: style.resultinitial
+      });
+    } else if (checkResult && !newBoard.includes('.')) {
+      this.setState({
+        result: 'Gratulacje wygrałeś',
+        resultClassName: style.resultwin
+      });
+    } else {
+      this.setState({
+        result: 'Narazie wszystko dobrze :)',
+        resultClassName: style.resultgood
+      });
+    }
     this.setState({ board: newBoard });
   }
 
@@ -57,6 +80,10 @@ class App extends React.Component {
     return (
       <div className={style.container}>
         <h1>Sudoku</h1>
+        <Result
+          result={this.state.result}
+          className={this.state.resultClassName}
+        />
         <Board
           board={this.state.board}
           initialBoard={this.state.initialBoard}

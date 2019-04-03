@@ -1,5 +1,4 @@
 import React from 'react';
-import style from '../containers/App.css';
 
 const Tile = props => {
   return (

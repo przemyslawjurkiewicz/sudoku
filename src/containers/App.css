@@ -10,6 +10,34 @@
   align-items: center;
 }
 
+.resultinitial {
+  text-transform: uppercase;
+  color: green;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.resultwin{
+  text-transform: uppercase;
+  color: yellow;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.resultwrong {
+  text-transform: uppercase;
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.resultgood {
+  text-transform: uppercase;
+  color: blue;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .board {
   max-width: 800px;
   max-height: 800px;
@@ -28,25 +56,23 @@
   padding: 3% 0;
   color: black;
   font-weight: bold;
+  background: #aedef5;
   border: 1px solid #2f3640;
-}
-.tile:disabled {
-    background: #aedef5;
 }
 
 .tileinitial {
-    width: 11%;
-    margin: 0;
-    text-align: center;
-    font-size: 1rem;
-    color: red;
-    font-weight: bold;
-    padding: 3% 0;
-    border: 1px solid #2f3640;
+  width: 11%;
+  margin: 0;
+  text-align: center;
+  font-size: 1rem;
+  color: red;
+  font-weight: bold;
+  padding: 3% 0;
+  border: 1px solid #2f3640;
 }
 
-.tileinitial:disabled{
-    background: #ffe9e8;
+.tileinitial:disabled {
+  background: #ffe9e8;
 }
 
 input[type='number']::-webkit-inner-spin-button,
@@ -55,20 +81,20 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 0;
 }
 
-input[type=number] {
-  -moz-appearance:textfield;
+input[type='number'] {
+  -moz-appearance: textfield;
 }
 
 input:nth-child(9n + 1) {
-    border-left: 3px solid #2f3640;
+  border-left: 3px solid #2f3640;
 }
 
 input:nth-child(n + 73) {
-    border-bottom: 3px solid #2f3640;
+  border-bottom: 3px solid #2f3640;
 }
 
 input:nth-child(3n) {
-    border-right: 3px solid #2f3640;
+  border-right: 3px solid #2f3640;
 }
 input:nth-child(27n + 1),
 input:nth-child(27n + 2),
@@ -79,5 +105,5 @@ input:nth-child(27n + 6),
 input:nth-child(27n + 7),
 input:nth-child(27n + 8),
 input:nth-child(27n + 9) {
-    border-top: 3px solid #2f3640
+  border-top: 3px solid #2f3640;
 }

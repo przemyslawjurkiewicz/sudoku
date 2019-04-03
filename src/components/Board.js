@@ -3,22 +3,15 @@ import Tile from './Tile.js';
 import style from '../containers/App.css';
 
 const Board = props => {
-  // if (props.board == props.initialBoard) {
   const splitBoard = props.board.split('');
   const splitInitialBoard = props.initialBoard.split('');
-
   const value = splitBoard.map((number, index) => {
-    //console.log (props.board[index])
     return (
       <Tile
         key={index}
         value={number === '.' ? '' : number}
-        className={
-          number === splitInitialBoard[index] ? style.tileinitial : style.tile
-        }
-        disabled={
-          number == '.' ? false : true
-        }
+        className={number === splitInitialBoard[index]&&number !='.' ? style.tileinitial : style.tile}
+        disabled={number === splitInitialBoard[index]&&number !='.' ? true : false}
         handleChange={event => props.handleChange(index, event.target.value)}
       />
     );
