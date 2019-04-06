@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+h1 {
+  margin: 2px 0;
+}
+
 .container {
   flex-direction: column;
   flex-wrap: nowrap;
@@ -11,29 +15,33 @@
 }
 
 .resultinitial {
+  margin: 0;
   text-transform: uppercase;
   color: green;
   font-weight: bold;
   font-size: 20px;
 }
 
-.resultwin{
+.resultwin {
+  margin: 0;
   text-transform: uppercase;
-  color: yellow;
+  color: rgb(202, 161, 49);
   font-weight: bold;
   font-size: 20px;
 }
 
 .resultwrong {
+  margin: 0;
   text-transform: uppercase;
-  color: red;
+  color: rgb(231, 64, 64);
   font-weight: bold;
   font-size: 20px;
 }
 
 .resultgood {
+  margin: 0;
   text-transform: uppercase;
-  color: blue;
+  color: rgb(0, 119, 255);
   font-weight: bold;
   font-size: 20px;
 }
@@ -48,6 +56,34 @@
   height: auto;
 }
 
+.buttons {
+  margin: 2px 0 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.buttons button {
+  border: none;
+  height: 40px;
+  width: 150px;
+  margin: 0 50px;
+  background: #aedef5;
+  outline: none;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #fff;
+}
+
+.buttons button:hover {
+  background: #4d626b;
+}
+
 .tile {
   width: 11%;
   margin: 0;
@@ -58,6 +94,10 @@
   font-weight: bold;
   background: #aedef5;
   border: 1px solid #2f3640;
+}
+
+.tile:hover {
+  background: #4d626b;
 }
 
 .tileinitial {

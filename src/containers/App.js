@@ -79,7 +79,7 @@ class App extends React.Component {
   render() {
     return (
       <div className={style.container}>
-        <h1>Sudoku</h1>
+        <h1>SUDOKU</h1>
         <Result
           result={this.state.result}
           className={this.state.resultClassName}
@@ -90,9 +90,8 @@ class App extends React.Component {
           handleChange={this.handleChange.bind(this)}
         />
         <div className={style.buttons}>
-          <button onClick={() => this.checkSolve()}>Check</button>
-          <button onClick={() => this.newGame()}>New Game</button>
-          <button onClick={() => this.showSolve()}>Solve</button>
+          <button onClick={() => this.newGame()}>Nowa gra</button>
+          <button onClick={() => this.showSolve()}>Pokaż rozwiązanie</button>
           <button onClick={() => this.reset()}>Restart</button>
         </div>
       </div>
