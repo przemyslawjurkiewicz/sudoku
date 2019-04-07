@@ -2,6 +2,7 @@ import React from 'react';
 import style from './App.css';
 import Result from '../components/Result';
 import Board from '../components/Board';
+import Modal from '../components/Modal';
 import sudoku from 'sudoku-umd';
 import { hot } from 'react-hot-loader';
 
@@ -12,20 +13,29 @@ class App extends React.Component {
       initialBoard: '',
       board: '',
       result: 'Zaczynamy',
-      resultClassName: style.resultinitial
+      resultClassName: style.resultinitial,
+      modalIsOpen: false
     };
   }
 
-  newGame() {
-    const board = sudoku.generate('easy');
+  toggleModal (){
+    this.setState({
+      modalIsOpen: !this.state.modalIsOpen     
+    });
+    console.log(this.state.modalIsOpen)
+  }
+
+  newGame(difficult) {
+    const board = sudoku.generate(difficult);
     this.setState({
       initialBoard: board,
-      board
+      board,
+      modalIsOpen: !this.state.modalIsOpen
     });
   }
 
   reset() {
-    this.setState({ board: this.state.initialBoard });
+    this.setState({ board: this.state.initialBoard, result: 'Zaczynamy' });
   }
 
   showSolve() {
@@ -89,8 +99,12 @@ class App extends React.Component {
           initialBoard={this.state.initialBoard}
           handleChange={this.handleChange.bind(this)}
         />
-        <div className={style.buttons}>
-          <button onClick={() => this.newGame()}>Nowa gra</button>
+        <Modal 
+          show={this.state.modalIsOpen}
+          action = {this.newGame.bind(this)}
+        />
+        <div className={style.buttons} >
+          <button onClick={() => this.toggleModal()}>Nowa gra</button>
           <button onClick={() => this.showSolve()}>Pokaż rozwiązanie</button>
           <button onClick={() => this.reset()}>Restart</button>
         </div>
