@@ -1,3 +1,3 @@
-# webpack-plus-react
+# SUDOKU
 
 https://przemyslawjurkiewicz.github.io/sudoku/
