@@ -14,15 +14,15 @@ class App extends React.Component {
       board: '',
       result: 'Zaczynamy',
       resultClassName: style.resultinitial,
-      modalIsOpen: false
+      modalIsOpen: false,
+      startGame: false
     };
   }
 
-  toggleModal (){
+  toggleModal () {
     this.setState({
       modalIsOpen: !this.state.modalIsOpen     
     });
-    console.log(this.state.modalIsOpen)
   }
 
   newGame(difficult) {
@@ -30,7 +30,9 @@ class App extends React.Component {
     this.setState({
       initialBoard: board,
       board,
-      modalIsOpen: !this.state.modalIsOpen
+      modalIsOpen: !this.state.modalIsOpen,
+      startGame: true,
+      result: 'Zaczynamy'
     });
   }
 
@@ -105,8 +107,8 @@ class App extends React.Component {
         />
         <div className={style.buttons} >
           <button onClick={() => this.toggleModal()}>Nowa gra</button>
-          <button onClick={() => this.showSolve()}>Pokaż rozwiązanie</button>
-          <button onClick={() => this.reset()}>Restart</button>
+          {this.state.startGame ? <button onClick={() => this.showSolve()}>Pokaż rozwiązanie</button>:''}
+          {this.state.startGame ? <button onClick={() => this.reset()}>Restart</button>:''}
         </div>
       </div>
     );

@@ -10,7 +10,7 @@ const Modal = props => {
         return (
             <div className={style.overlay}>
                 <div className={style.modal}>
-                    <p>Wybierz poziom trudności</p>
+                    <h2>Wybierz poziom trudności</h2>
                     <div className={style.buttons}>
                         <button onClick={() => props.action('easy')}>Łatwy</button>
                         <button onClick={() => props.action('medium')}>Średni</button>
