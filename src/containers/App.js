@@ -32,7 +32,8 @@ class App extends React.Component {
       board,
       modalIsOpen: !this.state.modalIsOpen,
       startGame: true,
-      result: 'Zaczynamy'
+      result: 'Zaczynamy',
+      resultClassName: style.resultinitial,
     });
   }
 
@@ -47,22 +48,12 @@ class App extends React.Component {
     }
   }
 
-  checkSolve() {
-    const check = sudoku.solve(this.state.board);
-    if (!check) {
-      alert('Nieprawidłowe rozwiązanie');
-    } else if (this.state.board === this.state.initialBoard) {
-      alert('Rozwiązanie jest takie samo jak początkowe');
-    } else {
-      alert('Gratulacje, udało Ci się :)');
-    }
-  }
-
   handleChange(index, value) {
     const newBoard =
       this.state.board.slice(0, index) +
       ((value === '') | (value < 1) | (value > 9) ? '.' : value) +
       this.state.board.slice(index + 1);
+      // Check result when chenge board
     const checkResult = sudoku.solve(newBoard);
     if (!checkResult) {
       this.setState({
@@ -88,6 +79,28 @@ class App extends React.Component {
     this.setState({ board: newBoard });
   }
 
+  setLocalStorage () {
+    localStorage.setItem('initialBoard', this.state.initialBoard);
+    localStorage.setItem('board', this.state.board);
+    localStorage.setItem('result', this.state.result);
+    localStorage.setItem('resultClassName', this.state.resultClassName)
+  }
+
+  getFromLocalStorage () {
+    const storedBoard = localStorage.getItem('board');
+    const storedInitialBoard = localStorage.getItem('initialBoard')
+    const storedResult = localStorage.getItem('result')
+    const storeResultClassName = localStorage.getItem('resultClassName')
+    this.setState({
+      initialBoard: storedInitialBoard,
+      board: storedBoard,
+      startGame: true,
+      result: storedResult,
+      resultClassName: storeResultClassName
+    });
+  }
+
+
   render() {
     return (
       <div className={style.container}>
@@ -109,6 +122,8 @@ class App extends React.Component {
           <button onClick={() => this.toggleModal()}>Nowa gra</button>
           {this.state.startGame ? <button onClick={() => this.showSolve()}>Pokaż rozwiązanie</button>:''}
           {this.state.startGame ? <button onClick={() => this.reset()}>Restart</button>:''}
+          {this.state.startGame ? <button onClick={() => this.setLocalStorage()}>Zapisz</button>:''}
+          <button onClick={() => this.getFromLocalStorage()}>Wczytaj ostatnio zapisaną</button>
         </div>
       </div>
     );

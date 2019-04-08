@@ -171,8 +171,11 @@ input:nth-child(27n + 9) {
 
 @media (max-width: 768px) {
   .buttons {
-    flex-direction: column
+    flex-wrap: wrap;
   }
 
+  .modal .buttons {
+    flex-direction: column;
+  }
 
 }
